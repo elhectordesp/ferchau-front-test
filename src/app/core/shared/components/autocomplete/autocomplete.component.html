@@ -1,0 +1,16 @@
+<mat-form-field>
+  <input
+    matInput
+    placeholder="Municipio"
+    [formControl]="municipalityControl"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option
+      *ngFor="let option of filteredMunicipalitys | async"
+      [value]="option"
+    >
+      {{ option.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

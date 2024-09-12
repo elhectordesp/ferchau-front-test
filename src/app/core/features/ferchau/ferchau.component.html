@@ -1,0 +1,14 @@
+<div>
+  <app-autocomplete
+    (municipalitySelected)="onMunicipalitySelectedChange($event)"
+  ></app-autocomplete>
+  <app-temperature-unit-selector
+    (unitSelected)="onUnitSelectedChange($event)"
+  ></app-temperature-unit-selector>
+  <div *ngIf="weatherData">
+    <app-weather-data
+      [weatherData]="weatherData"
+      [municipalityName]="municipalitySelected.name"
+    ></app-weather-data>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<h2>
+  {{ municipalityName }}
+</h2>
+<h6>
+  {{ date | date : "fullDate" }}
+</h6>
+<h1>
+  {{ weatherData.mediaTemperatura }}º{{
+    weatherData.unidadTemperatura === "G_CEL" ? "C" : "F"
+  }}
+</h1>
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let item of weatherData.probPrecipitacion">
+        {{ item.value }} %
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td *ngFor="let item of weatherData.probPrecipitacion">
+        {{ item.periodo }}
+      </td>
+    </tr>
+  </tbody>
+</table>
