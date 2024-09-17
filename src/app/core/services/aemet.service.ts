@@ -1,30 +1,30 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Forecast } from '../models/forecast.model';
 import { Municipality } from '../models/municipality.model';
+import { HttpClientService } from './http-client.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AemetService {
-  private forecastUrl = 'http://localhost:8080/forecast';
-  private municipalitiesUrl = 'http://localhost:8080/municipalities';
+  private forecastEndpoint = '/forecast';
+  private municipalitiesEndpoint = '/municipalities';
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpClientService: HttpClientService) {}
 
   getForecast(
     municipality: string,
     measurementUnit?: string
   ): Observable<Forecast> {
-    let url = `${this.forecastUrl}?municipalityId=${municipality}`;
+    let url = `${this.forecastEndpoint}?municipalityId=${municipality}`;
     if (measurementUnit) url += `&measurementUnit=${measurementUnit}`;
-    return this.http.get<Forecast>(url);
+    return this.httpClientService.get<Forecast>(url);
   }
 
   getMunicipalities(name: string): Observable<Municipality[]> {
-    return this.http
-      .get<Municipality[]>(`${this.municipalitiesUrl}?name=${name}`)
+    return this.httpClientService
+      .get<Municipality[]>(`${this.municipalitiesEndpoint}?name=${name}`)
       .pipe(
         map((response) => {
           return response.map((municipality: Municipality) => ({

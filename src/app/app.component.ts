@@ -3,6 +3,7 @@ import { Component, LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FerchauComponent } from './core/features/ferchau/ferchau.component';
 import { AemetService } from './core/services/aemet.service';
+import { HttpClientService } from './core/services/http-client.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,11 @@ import { AemetService } from './core/services/aemet.service';
   imports: [RouterOutlet, FerchauComponent, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [AemetService, { provide: LOCALE_ID, useValue: 'es-ES' }],
+  providers: [
+    AemetService,
+    HttpClientService,
+    { provide: LOCALE_ID, useValue: 'es-ES' },
+  ],
 })
 export class AppComponent {
   title = 'ferchau-front';

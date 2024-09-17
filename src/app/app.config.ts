@@ -9,7 +9,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
-// Registrar los datos de localización
 registerLocaleData(localeEs);
 
 export const appConfig: ApplicationConfig = {
@@ -17,6 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
-    { provide: LOCALE_ID, useValue: 'es-ES' }, // Agregar configuración del locale
+    { provide: LOCALE_ID, useValue: 'es-ES' },
   ],
 };
